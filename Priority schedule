@@ -1,0 +1,60 @@
+#include<stdio.h> 
+#include<conio.h> 
+void main() 
+{ 
+int i,j,n,time[10],bursttime[10],wt[10],pt[10],temp2,total=0,p[10],temp; 
+float avgwt,avgtat; 
+int tat[10],totaltat=0; 
+clrscr(); 
+printf("nenter the no of process:"); 
+scanf("t%d",&n); 
+for(i=0;i<n;i++) 
+{ 
+printf("nenter the time of process P%dt",i); 
+scanf("nt%d",&time[i]); 
+printf("nenter the priority of process p%dt",i); 
+scanf("nt%d",&pt[i]); 
+} 
+for(i=0;i<n;i++) 
+{ 
+p[i]=i; 
+for(j=0;j<n;j++) 
+{ 
+if(pt[i]<pt[j]) 
+{ 
+temp=pt[i]; 
+pt[i]=pt[j]; 
+pt[j]=temp; 
+temp=time[i]; 
+time[i]=time[j]; 
+time[j]=temp; 
+temp2=p[i]; 
+p[i]=p[j]; 
+p[j]=temp2; 
+} } } 
+wt[0]=0; 
+for(i=1;i<=n;i++) 
+{ 
+wt[i]=wt[i-1]+time[i-1]; 
+printf("nthe wating time of process%d",p[i-1]); 
+printf("t%d",wt[i-1]); 
+} 
+for(i=0;i<n;i++) 
+{
+tat[i]=wt[i]+time[i]; 
+} 
+printf("npstcttpttwtttat"); 
+for(i=0;i<n;i++) 
+{ 
+printf("np%dt%2dt%2dt%2dt%2d",p[i],time[i],pt[i],wt[i],tat[i]); 
+} for(i=0;i<n;i++) 
+{ 
+total=total+wt[i]; 
+totaltat=totaltat+tat[i]; 
+} 
+avgwt=float(total)/n; 
+avgtat=float(totaltat)/n; 
+printf("navg waiting time is:t%f",avgwt); 
+printf("nAverage turn around time is :%f",avgtat); 
+getch(); 
+}
